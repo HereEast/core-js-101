@@ -202,9 +202,7 @@ function getTail(arr, n) {
  *    +'30,31,32,33,34'
  */
 function toCsvText(arr) {
-  const strArr = arr.map((el) => `${el.toString()}\n`);
-  const str = strArr.join(',');
-  return str.slice(0, -1);
+  return arr.join('\n');
 }
 
 /**
@@ -459,8 +457,15 @@ function getIdentityMatrix(/* n */) {
  *     0, 100 => [ 0, 1, 2, ..., 100 ]
  *     3, 3   => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  const length = end - start + 1;
+
+  const arr = new Array(length).fill().map((_, i) => {
+    const value = i + start;
+    return value;
+  });
+
+  return arr;
 }
 
 /**
