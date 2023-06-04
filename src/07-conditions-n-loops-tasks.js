@@ -400,8 +400,8 @@ function isBracketsBalanced(str) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  return num.toString(n);
 }
 
 /**
@@ -450,8 +450,23 @@ function getCommonDirectoryPath(paths) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  const len = m1.length;
+  const cols = m2[0].length;
+
+  const arr = new Array(len).fill(0).map(() => new Array(len).fill(0));
+
+  for (let i = 0; i < len; i += 1) {
+    for (let j = 0; j < cols; j += 1) {
+      let sum = 0;
+
+      for (let k = 0; k < m2.length; k += 1) {
+        sum += m1[i][k] * m2[k][j];
+      }
+      arr[i][j] = sum;
+    }
+  }
+  return arr;
 }
 
 /**
@@ -484,8 +499,16 @@ function getMatrixProduct(/* m1, m2 */) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(pos) {
+  if (pos[0][0] && pos[0][0] === pos[0][1] && pos[0][1] === pos[0][2]) return pos[0][0];
+  if (pos[1][0] && pos[1][0] === pos[1][1] && pos[1][1] === pos[1][2]) return pos[1][0];
+  if (pos[2][0] && pos[2][0] === pos[2][1] && pos[2][1] === pos[2][2]) return pos[2][0];
+  if (pos[0][0] && pos[0][0] === pos[1][0] && pos[1][0] === pos[2][0]) return pos[0][0];
+  if (pos[0][1] && pos[0][1] === pos[1][1] && pos[1][1] === pos[2][1]) return pos[0][1];
+  if (pos[0][2] && pos[0][2] === pos[1][2] && pos[1][2] === pos[2][2]) return pos[0][2];
+  if (pos[0][0] && pos[0][0] === pos[1][1] && pos[1][1] === pos[2][2]) return pos[0][0];
+  if (pos[0][2] && pos[0][2] === pos[1][1] && pos[1][1] === pos[2][0]) return pos[0][2];
+  return undefined;
 }
 
 module.exports = {
