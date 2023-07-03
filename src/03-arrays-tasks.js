@@ -36,9 +36,10 @@ function findElement(arr, value) {
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
 function generateOdds(len) {
-  const arr = new Array(len).fill(1);
+  const arr = new Array(len).fill(0);
+  const odds = arr.map((_, i) => 2 * i + 1);
 
-  return arr.map((el, i) => 2 * i + 1);
+  return odds;
 }
 
 
@@ -484,7 +485,7 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]
  */
 function getIdentityMatrix(n) {
-  const m = new Array(n).fill(new Array(n).fill());
+  const m = new Array(n).fill(new Array(n).fill(0));
   const res = m.map((arr, row) => arr.map((_, i) => (row === i ? 1 : 0)));
 
   return res;
@@ -506,7 +507,7 @@ function getIdentityMatrix(n) {
 function getIntervalArray(start, end) {
   const length = end - start + 1;
 
-  const arr = new Array(length).fill().map((_, i) => {
+  const arr = new Array(length).fill(0).map((_, i) => {
     const value = i + start;
     return value;
   });
@@ -562,17 +563,17 @@ function distinct(arr) {
 function group(array, keySelector, valueSelector) {
   const map = new Map();
 
-  array.map((el) => {
-    const key = keySelector(el);
+  array.map((item) => {
+    const key = keySelector(item);
     if (!map.has(key)) {
       map.set(key, []);
     }
 
     const arr = map.get(key);
-    arr.push(valueSelector(el));
+    arr.push(valueSelector(item));
     map.set(key, arr);
 
-    return el;
+    return item;
   });
 
   return map;
