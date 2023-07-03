@@ -55,12 +55,7 @@ function parseDataFromIso8601(value) {
  */
 function isLeapYear(date) {
   const year = date.getFullYear();
-
-  if (year % 4) return false;
-  if (year % 100) return true;
-  if (year % 400) return false;
-
-  return true;
+  return year % 100 === 0 ? year % 400 === 0 : year % 4 === 0;
 }
 
 
@@ -81,19 +76,20 @@ function isLeapYear(date) {
  */
 function timeSpanToString(startDate, endDate) {
   const day = endDate.getDay() - startDate.getDay();
-  let hours = endDate.getHours() - startDate.getHours();
-  let minutes = endDate.getMinutes() - startDate.getMinutes();
-  let seconds = endDate.getSeconds() - startDate.getSeconds();
-  let milliseconds = endDate.getMilliseconds() - startDate.getMilliseconds();
 
-  if (day >= 1) hours += 24;
-  if (hours < 10) hours = `0${hours}`;
-  if (minutes < 10) minutes = `0${minutes}`;
-  if (seconds < 10) seconds = `0${seconds}`;
-  if (milliseconds < 100) milliseconds = `0${milliseconds}`;
-  if (milliseconds < 10) milliseconds = `0${milliseconds}`;
+  let h = endDate.getHours() - startDate.getHours();
+  let min = endDate.getMinutes() - startDate.getMinutes();
+  let sec = endDate.getSeconds() - startDate.getSeconds();
+  let ms = endDate.getMilliseconds() - startDate.getMilliseconds();
 
-  return `${hours}:${minutes}:${seconds}.${milliseconds}`;
+  if (day >= 1) h += 24;
+  if (h < 10) h = `0${h}`;
+  if (min < 10) min = `0${min}`;
+  if (sec < 10) sec = `0${sec}`;
+  if (ms < 100) ms = `0${ms}`;
+  if (ms < 10) ms = `0${ms}`;
+
+  return `${h}:${min}:${sec}.${ms}`;
 }
 
 
@@ -120,10 +116,10 @@ function angleBetweenClockHands(date) {
   if (hours >= 12) hours -= 12;
   hours = hours * 30 + minutes / 2;
 
-  let a = Math.abs(hours - minutes * 6);
-  if (a > 180) a = 360 - a;
+  let ang = Math.abs(hours - minutes * 6);
+  if (ang > 180) ang = 360 - ang;
 
-  return Math.PI * (a / 180);
+  return Math.PI * (ang / 180);
 }
 
 
