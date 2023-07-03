@@ -53,6 +53,7 @@ function getFizzBuzz(num) {
 function getFactorial(n) {
   if (n < 0) return -1;
   if (n === 0) return 1;
+
   return n * getFactorial(n - 1);
 }
 
@@ -195,6 +196,7 @@ function findFirstSingleChar(str) {
   for (let i = 0; i < str.length; i += 1) {
     const char = str[i];
     const sameChars = [...str].filter((el) => el === char);
+
     if (sameChars.length === 1) {
       return char;
     }
@@ -289,6 +291,7 @@ function reverseInteger(num) {
  */
 function isCreditCardNumber(ccn) {
   const str = String(ccn);
+
   let sum = 0;
   let double = false;
 
@@ -500,14 +503,14 @@ function getMatrixProduct(m1, m2) {
  *
  */
 function evaluateTicTacToePosition(pos) {
-  if (pos[0][0] && pos[0][0] === pos[0][1] && pos[0][1] === pos[0][2]) return pos[0][0];
-  if (pos[1][0] && pos[1][0] === pos[1][1] && pos[1][1] === pos[1][2]) return pos[1][0];
-  if (pos[2][0] && pos[2][0] === pos[2][1] && pos[2][1] === pos[2][2]) return pos[2][0];
-  if (pos[0][0] && pos[0][0] === pos[1][0] && pos[1][0] === pos[2][0]) return pos[0][0];
-  if (pos[0][1] && pos[0][1] === pos[1][1] && pos[1][1] === pos[2][1]) return pos[0][1];
-  if (pos[0][2] && pos[0][2] === pos[1][2] && pos[1][2] === pos[2][2]) return pos[0][2];
-  if (pos[0][0] && pos[0][0] === pos[1][1] && pos[1][1] === pos[2][2]) return pos[0][0];
-  if (pos[0][2] && pos[0][2] === pos[1][1] && pos[1][1] === pos[2][0]) return pos[0][2];
+  if (pos[0][0] && (pos[0][0] === pos[0][1]) && (pos[0][1] === pos[0][2])) return pos[0][0];
+  if (pos[1][0] && (pos[1][0] === pos[1][1]) && (pos[1][1] === pos[1][2])) return pos[1][0];
+  if (pos[2][0] && (pos[2][0] === pos[2][1]) && (pos[2][1] === pos[2][2])) return pos[2][0];
+  if (pos[0][0] && (pos[0][0] === pos[1][0]) && (pos[1][0] === pos[2][0])) return pos[0][0];
+  if (pos[0][1] && (pos[0][1] === pos[1][1]) && (pos[1][1] === pos[2][1])) return pos[0][1];
+  if (pos[0][2] && (pos[0][2] === pos[1][2]) && (pos[1][2] === pos[2][2])) return pos[0][2];
+  if (pos[0][0] && (pos[0][0] === pos[1][1]) && (pos[1][1] === pos[2][2])) return pos[0][0];
+  if (pos[0][2] && (pos[0][2] === pos[1][1]) && (pos[1][1] === pos[2][0])) return pos[0][2];
   return undefined;
 }
 
